@@ -14,7 +14,7 @@ const  router=createBrowserRouter(
       element:<Courses/>
     },
     {
-      path:'/login',
+      path:'/signin',
       element:<Login/>
     },
     {
