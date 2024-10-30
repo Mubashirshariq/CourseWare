@@ -1,18 +1,33 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { FiLogIn } from "react-icons/fi";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
 function Navbar() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   return (
-    <div className="navbar bg-black text-white p-2 w-screen flex flex-row justify-between">
-      <h1 className="text-2xl m-4">Course App</h1>
-      <div className="flex flex-row justify-end">
-        <button onClick={()=>navigate('/signin')} className="bg-amber-400 p-2 m-2 rounded-lg" >Login</button>
-        <button onClick={()=>navigate('/register')} className="bg-amber-400 p-2 m-2 rounded-lg">Register</button>
+    <div className="fixed top-0 left-0 z-100 navbar bg-gradient-to-r from-gray-900 to-gray-800 text-gray-200 p-4 w-screen flex flex-row justify-between items-center shadow-lg">
+      <h1 className="text-3xl font-bold m-4 tracking-wide text-indigo-400 hover:text-indigo-500 cursor-pointer">
+        Course<span className="text-indigo-300">Ware</span>
+      </h1>
+      <div className="flex flex-row justify-end gap-4">
+        <button
+          onClick={() => navigate('/login')}
+          className="flex items-center bg-gray-700 text-gray-200 p-3 rounded-lg hover:bg-indigo-600 hover:text-white transition-all duration-200 shadow-md"
+        >
+          <FiLogIn className="mr-2" />
+          Login
+        </button>
+        <button
+          onClick={() => navigate('/signup')}
+          className="flex items-center bg-gray-700 text-gray-200 p-3 rounded-lg hover:bg-indigo-600 hover:text-white transition-all duration-200 shadow-md"
+        >
+          <AiOutlineUserAdd className="mr-2" />
+          Register
+        </button>
       </div>
     </div>
   );
 }
 
 export default Navbar;
-    

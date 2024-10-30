@@ -52,7 +52,9 @@ function Login() {
                     />
                     {errors.password && <span className="text-red-500">{errors.password.message}</span>}
 
-                    <button type="submit" className="bg-blue-500 p-2 m-2 rounded-lg">Login</button>
+                    <button type="submit" className="bg-blue-600 p-3 rounded-lg text-gray-200 font-semibold hover:bg-blue-500 hover:text-white transition duration-200">
+                        Sign in
+                    </button>
                 </form>
             </div>
         </div>
