@@ -16,7 +16,8 @@ function Login() {
         try {
             const response = await axios.post(api, data);
             navigate("/");
-            console.log("response data", response.data);
+            console.log("response data", response.data.token);
+            localStorage.setItem("jwt_token",response.data.token);
         } catch (error) {
             console.log("Error occurred while signing in");
         }

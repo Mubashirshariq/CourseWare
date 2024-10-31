@@ -14,10 +14,18 @@ const api = "http://localhost:3000/admin/create-course";
 
 export default function CourseForm() {
   const { handleSubmit, register, formState: { errors } } = useForm<Course>();
-
+  const token=localStorage.getItem("jwt_token")
   async function createCourse(data: Course) {
     try {
-      const response = await axios.post(api, data);
+      const response = await axios.post(
+        api, data,
+        {
+            headers: {
+                Authorization: token
+            }
+        }
+    );
+
       console.log("response", response);
     } catch (error) {
       console.log("error", error);

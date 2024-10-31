@@ -29,8 +29,7 @@ function Register() {
         try {
             const response = await axios.post(api, data);
             setData(response.data);
-            navigate('/signin');
-            console.log(response.data);
+            navigate('/login');
         } catch (error) {
                 console.log("Error: ", error);
             }
