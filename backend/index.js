@@ -91,7 +91,7 @@ app.post("/admin/signin", async (req, res) => {
 });
 
 //create a new course
-app.post("/admin/course", auth, async (req, res) => {
+app.post("/admin/create-course", auth, async (req, res) => {
   const { title, description, price, imageLink, published, userId } = req.body;
   try {
     const newCourse = await CourseModel.create({

@@ -4,7 +4,7 @@ import CourseImg from '../assets/download.jpeg';
 
 function Courses() {
   return (
-    <div className=" bg-gray-900 text-white py-10 px-4">
+    <div className="  text-white py-10 px-4">
       <h2 className="text-4xl font-bold text-center mb-8 text-indigo-400">
         Explore Our Courses
       </h2>
