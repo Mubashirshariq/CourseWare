@@ -1,6 +1,7 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm }  from "react-hook-form";
 import axios from "axios";
+import toast,{Toaster} from "react-hot-toast";
 
 interface Course {
   title: string;
@@ -13,7 +14,7 @@ interface Course {
 const api = "http://localhost:3000/admin/create-course";
 
 export default function CourseForm() {
-  const { handleSubmit, register, formState: { errors } } = useForm<Course>();
+  const { handleSubmit, register,reset, formState: { errors } } = useForm<Course>();
   const token=localStorage.getItem("jwt_token")
   async function createCourse(data: Course) {
     try {
@@ -25,15 +26,18 @@ export default function CourseForm() {
             }
         }
     );
-
+      toast.success("Course Created");
       console.log("response", response);
+      reset();
     } catch (error) {
+      toast.success("Error occured while creating a course")
       console.log("error", error);
     }
   }
 
   return (
     <div className="max-w-md max-h-screen mx-auto mt-10 p-6 bg-slate-500 shadow-lg rounded-lg">
+     <Toaster/>
       <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Create New Course</h2>
       <form onSubmit={handleSubmit(createCourse)} className="space-y-4">
         <div>

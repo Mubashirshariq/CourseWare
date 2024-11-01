@@ -1,4 +1,4 @@
-// Courses.js
+
 import CourseCard from './courseCard';
 import CourseImg from '../assets/download.jpeg';
 

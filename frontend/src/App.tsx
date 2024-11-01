@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import CourseForm from './components/CourseForm';
+import AdminCourses from './components/admin/admin-courses';
 
 function App() {
   return (
@@ -18,20 +19,26 @@ function App() {
         } 
       />
       <Route 
-        path="/login" 
+        path="/admin/login" 
         element={<Login />}
       />
       <Route 
-        path="/signup" 
+        path="/admin/signup" 
         element={<Register />}
       />
       <Route
-        path='/create-course'
+        path='/admin/create-course'
         element={
           <Layout>
             <CourseForm />
           </Layout>
         } 
+      />
+      <Route
+      path='/admin/my-courses'
+      element={<Layout>
+       <AdminCourses/>
+      </Layout>}
       />
     </Routes>
   );

@@ -12,14 +12,14 @@ function Navbar() {
       </h1>
       <div className="flex flex-row justify-end gap-4">
         <button
-          onClick={() => navigate('/login')}
+          onClick={() => navigate('/admin/login')}
           className="flex items-center bg-gray-700 text-gray-200 p-3 rounded-lg hover:bg-indigo-600 hover:text-white transition-all duration-200 shadow-md"
         >
           <FiLogIn className="mr-2" />
           Login
         </button>
         <button
-          onClick={() => navigate('/signup')}
+          onClick={() => navigate('/admin/signup')}
           className="flex items-center bg-gray-700 text-gray-200 p-3 rounded-lg hover:bg-indigo-600 hover:text-white transition-all duration-200 shadow-md"
         >
           <AiOutlineUserAdd className="mr-2" />

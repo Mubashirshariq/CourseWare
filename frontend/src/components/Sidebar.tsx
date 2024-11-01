@@ -19,7 +19,7 @@ function Sidebar() {
                 </li>
                 <li>
                     <Link 
-                        to="/my-courses" 
+                        to="/admin/my-courses" 
                         className={`flex items-center text-white hover:text-amber-400 transition duration-300 ${location.pathname === '/my-courses' ? 'text-amber-400 font-semibold' : ''}`}
                     >
                         <FaBookOpen className="mr-2 text-xl" />
@@ -28,7 +28,7 @@ function Sidebar() {
                 </li>
                 <li>
                     <Link 
-                        to="/create-course" 
+                        to="/admin/create-course" 
                         className={`flex items-center text-white hover:text-amber-400 transition duration-300 ${location.pathname === '/create-course' ? 'text-amber-400 font-semibold' : ''}`}
                     >
                         <FaPlusCircle className="mr-2 text-xl" />
