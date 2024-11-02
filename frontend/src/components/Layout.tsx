@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import Sidebar from "./Sidebar";
 
 interface LayoutProps {
@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps) {
             <Navbar />
             <div className="flex flex-1">
                 <Sidebar />
-                <main className=" bg-gray-900 pt-24 pl-48 flex-1 p-6 bg-gray-800 text-black">
+                <main className=" bg-gray-900 pt-24 pl-48 flex-1 p-6">
                     {children}
                 </main>
             </div>
