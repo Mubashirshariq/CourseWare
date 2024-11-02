@@ -1,9 +1,9 @@
 import './App.css';
-import Courses from './components/Courses';
+import Home from './components/home';
 import Layout from './components/Layout';
 import { Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './components/login';
+import Register from './components/register';
 import CourseForm from './components/CourseForm';
 import AdminCourses from './components/admin/admin-courses';
 
@@ -14,7 +14,7 @@ function App() {
         path="/" 
         element={
           <Layout>
-            <Courses />
+            <Home />
           </Layout>
         } 
       />

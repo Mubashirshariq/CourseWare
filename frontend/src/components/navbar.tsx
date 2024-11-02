@@ -6,7 +6,7 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 function Navbar() {
   const navigate = useNavigate();
   return (
-    <div className="fixed top-0 left-0 z-100 navbar bg-gradient-to-r from-gray-900 to-gray-800 text-gray-200 p-4 w-screen flex flex-row justify-between items-center shadow-lg">
+    <div className="fixed top-0 left-0 z-50 navbar bg-gradient-to-r from-gray-900 to-gray-800 text-gray-200 p-4 w-screen flex flex-row justify-between items-center shadow-lg">
       <h1 className="text-3xl font-bold m-4 tracking-wide text-indigo-400 hover:text-indigo-500 cursor-pointer">
         Course<span className="text-indigo-300">Ware</span>
       </h1>

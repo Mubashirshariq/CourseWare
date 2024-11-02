@@ -4,10 +4,18 @@ import CourseCard from '../courseCard';
 import axios from 'axios';
 
 const api = "http://localhost:3000/admin/courses";
+type Tcourse={
+  title:string,
+  description:string,
+  price:number,
+  imageLink:string,
+  published:boolean,
+  userId:number,
+}
 
 function AdminCourses() {
     const token=localStorage.getItem("jwt_token");
-    const [courses,setCourses]=useState();
+    const [courses,setCourses]=useState<Tcourse[]>();
     useEffect(()=>{
         async function fetchCourses(){
             try {
@@ -25,7 +33,7 @@ function AdminCourses() {
     },[])
 
   return (
-    <div className="  text-white py-10 px-4">
+    <div className=" text-white py-10 px-4">
       <h2 className="text-4xl font-bold text-center mb-8 text-indigo-400">
         My Courses
       </h2>
