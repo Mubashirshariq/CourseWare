@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const { auth } = require("./middlewares/auth");
 const { UserModel, CourseModel } = require("./models/models");
+const {upload}=require("./middlewares/multer")
+const {s3,getCommand}=require("./utils/index")
 const { z } = require("zod");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
@@ -91,7 +93,10 @@ app.post("/admin/signin", async (req, res) => {
 });
 
 //create a new course
-app.post("/admin/create-course", auth, async (req, res) => {
+app.post("/admin/create-course", auth,upload.single("courseImg"),async (req, res) => {
+  const command=getCommand({
+    
+  })
   const { title, description, price, imageLink, published, userId } = req.body;
   try {
     const newCourse = await CourseModel.create({

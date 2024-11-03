@@ -71,7 +71,7 @@ export default function CourseForm() {
 
         <div>
           <input
-            type="text"
+            type="file"
             placeholder="Image Link"
             {...register("imageLink", { required: "Image link is required" })}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

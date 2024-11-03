@@ -4,7 +4,7 @@ import { FaHome, FaBookOpen, FaPlusCircle, FaBars, FaTimes } from 'react-icons/f
 
 function Sidebar() {
     const location = useLocation();
-    const [isOpen, setIsOpen] = useState(false); // State to manage the menu visibility
+    const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);

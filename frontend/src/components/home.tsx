@@ -18,7 +18,7 @@ function Home() {
             Get Started
           </button>
         </div>
-        <div className="mt-10 w-full md:w-3/4 lg:w-1/2 pl-11">
+        <div className="mt-10 w-full md:w-3/4 lg:w-1/2 pl-6">
           <img
             src={HeroImage}
             alt="Hero Section"
@@ -26,7 +26,7 @@ function Home() {
           />
         </div>
       </section>
-      <section className="mt-20 pl-16 grid md:grid-cols-3 gap-8 text-center">
+      <section className="mt-20 pl-8 grid md:grid-cols-3 gap-8 text-center">
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
           <h3 className="text-2xl font-bold mb-2">Easy Course Creation</h3>
           <p className="text-gray-400">Quickly create and publish courses with our intuitive tools designed for creators.</p>
