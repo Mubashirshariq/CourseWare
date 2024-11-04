@@ -1,43 +1,52 @@
 import React from "react";
-import { useForm }  from "react-hook-form";
+import { useForm } from "react-hook-form";
 import axios from "axios";
-import toast,{Toaster} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 interface Course {
   title: string;
   description: string;
   price: number;
-  imageLink: string;
+  CourseImg: FileList;
   published: string;
 }
 
 const api = "http://localhost:3000/admin/create-course";
 
 export default function CourseForm() {
-  const { handleSubmit, register,reset, formState: { errors } } = useForm<Course>();
-  const token=localStorage.getItem("jwt_token")
+  const { handleSubmit, register, reset, formState: { errors } } = useForm<Course>();
+  const token = localStorage.getItem("jwt_token");
+
   async function createCourse(data: Course) {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("price", data.price.toString());
+    formData.append("published", data.published);
+    
+    if (data.CourseImg && data.CourseImg.length > 0) {
+      formData.append("CourseImg", data.CourseImg[0]);
+    }
+
     try {
-      const response = await axios.post(
-        api, data,
-        {
-            headers: {
-                Authorization: token
-            }
-        }
-    );
+      const response = await axios.post(api, formData, {
+        headers: {
+          Authorization: token,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       toast.success("Course Created");
       console.log("response", response);
       reset();
     } catch (error) {
-      toast.success("Error occured while creating a course")
+      toast.error("Error occurred while creating a course");
       console.log("error", error);
     }
   }
 
   return (
     <div className="max-w-md max-h-screen mx-auto mt-10 p-6 bg-slate-500 shadow-lg rounded-lg">
-     <Toaster/>
+      <Toaster />
       <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Create New Course</h2>
       <form onSubmit={handleSubmit(createCourse)} className="space-y-4">
         <div>
@@ -72,11 +81,10 @@ export default function CourseForm() {
         <div>
           <input
             type="file"
-            placeholder="Image Link"
-            {...register("imageLink", { required: "Image link is required" })}
+            {...register("CourseImg", { required: "Image link is required" })}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          {errors.imageLink && <p className="text-red-500 text-sm mt-1">{errors.imageLink.message}</p>}
+          {errors.CourseImg && <p className="text-red-500 text-sm mt-1">{errors.CourseImg.message}</p>}
         </div>
 
         <div>

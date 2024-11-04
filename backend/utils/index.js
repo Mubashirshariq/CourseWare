@@ -26,4 +26,4 @@ const command=new PutObjectCommand({
 return command;
 }
 
-module.exports={s3,getCommand}
+module.exports={s3,getCommand,bucketName}

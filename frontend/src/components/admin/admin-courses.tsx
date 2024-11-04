@@ -8,7 +8,7 @@ type Tcourse={
   title:string,
   description:string,
   price:number,
-  imageLink:string,
+  imageUrl:string,
   published:boolean,
   userId:number,
 }
@@ -39,7 +39,7 @@ function AdminCourses() {
       </h2>
       <div className="flex flex-wrap justify-center gap-6">
         {courses && courses.map((course)=>{
-          return <CourseCard className="w-full sm:w-1/2 lg:w-1/4" courseName={course.title}  courseImg={course.imageLink} courseDesc={course.description} coursePrice={course.price}/>
+          return <CourseCard className="w-full sm:w-1/2 lg:w-1/4" courseName={course.title}  courseImg={course.imageUrl} courseDesc={course.description} coursePrice={course.price}/>
         })}
       </div>
     </div>

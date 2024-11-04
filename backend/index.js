@@ -3,16 +3,20 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const { auth } = require("./middlewares/auth");
 const { UserModel, CourseModel } = require("./models/models");
-const {upload}=require("./middlewares/multer")
-const {s3,getCommand}=require("./utils/index")
+const {upload}=require("./middlewares/multer");
+const sharp = require("sharp");
+const {s3,getCommand,bucketName}=require("./utils/index")
+const { getSignedUrl } =require("@aws-sdk/s3-request-presigner");
+const { S3Client, GetObjectCommand } =require("@aws-sdk/client-s3");
 const { z } = require("zod");
+const crypto=require("crypto")
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
 dotenv.config();
 
 const jwt_secret = process.env.JWT_SECRET;
-
+const randomImageName=(bytes=32)=>crypto.randomBytes(bytes).toString('hex');
 async function connectDB() {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {});
@@ -93,17 +97,23 @@ app.post("/admin/signin", async (req, res) => {
 });
 
 //create a new course
-app.post("/admin/create-course", auth,upload.single("courseImg"),async (req, res) => {
-  const command=getCommand({
-    
-  })
-  const { title, description, price, imageLink, published, userId } = req.body;
+app.post("/admin/create-course", auth,upload.single("CourseImg"),async (req, res) => { 
+  // const resizedImageBuffer = await sharp(req.file.buffer).resize({height:324 ,width:192 ,fit: "contain"}).toBuffer()
+  // .resize(324, 192);
+  const imageName=randomImageName();
+  const command = getCommand({
+    originalName:imageName ,
+    Body: resizedImageBuffer,
+    ContentType: req.file.mimetype
+  });
+  await s3.send(command)
+  const { title, description, price, published, userId } = req.body;
   try {
     const newCourse = await CourseModel.create({
       title,
       description,
       price,
-      imageLink,
+      imageName,
       published,
       userId,
     });
@@ -153,13 +163,24 @@ app.put("/admin/courses/:courseId", auth, async (req, res) => {
 app.get("/admin/courses", auth, async (req, res) => {
   try {
     const courses = await CourseModel.find({});
+    
+    for (const course of courses) {
+      const getObjectParams = { 
+        Bucket: bucketName,
+        Key: course.imageName
+      };
+      const command = new GetObjectCommand(getObjectParams);
+      const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+      course.imageUrl = url;
+    }
+
     res.json({ courses });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error fetching courses", error: error.message });
+    console.error("Error fetching courses:", error);
+    res.status(500).json({ message: "Error fetching courses", error: error.message });
   }
 });
+
 
 //user routes logic
 //create new user account
@@ -178,7 +199,7 @@ app.post("/user/signup", async (req, res) => {
   }
 
   const { email, password } = req.body;
-  console.log("body", req.body);
+  // console.log("body", req.body);
 
   try {
     const user = await UserModel.create({

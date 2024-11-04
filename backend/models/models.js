@@ -15,7 +15,8 @@ const courseSchema= new Schema({
     description: String,
     price: Number,
     published:Boolean,
-    imageLink:String,
+    imageName:String,
+    imageUrl:String,
     userId:{type:ObjectId,ref:"users"}
 });
 
