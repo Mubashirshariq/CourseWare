@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps) {
             <Navbar />
             <div className="flex flex-1">
                 <Sidebar />
-                <main className=" bg-gray-900 pt-24 pl-48 flex-1 p-6">
+                <main className=" bg-gray-900 pt-24 pl-14 md:pl-48 flex-1 p-6">
                     {children}
                 </main>
             </div>

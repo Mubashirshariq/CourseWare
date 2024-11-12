@@ -1,17 +1,22 @@
 import './App.css';
-import Home from './components/home';
+import Home from './components/admin/home';
 import Layout from './components/Layout';
 import { Route, Routes } from 'react-router-dom';
 import Login from './components/login';
 import Register from './components/register';
-import CourseForm from './components/CourseForm';
+import CourseForm from './components/admin/CourseForm';
 import AdminCourses from './components/admin/admin-courses';
+import MainHome from './components/shared/home'
 
 function App() {
   return (
     <Routes>
+      <Route
+      path='/'
+      element={<MainHome/>}
+      />
       <Route 
-        path="/" 
+        path="/admin" 
         element={
           <Layout>
             <Home />

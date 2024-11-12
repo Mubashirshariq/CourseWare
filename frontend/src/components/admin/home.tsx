@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroImage from '../assets/download.jpeg';
+import HeroImage from '../../assets/download.jpeg';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {

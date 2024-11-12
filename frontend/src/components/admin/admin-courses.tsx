@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import CourseCard from '../courseCard';
+import CourseCard from './courseCard';
 import axios from 'axios';
 
 const api = "http://localhost:3000/admin/courses";

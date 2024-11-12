@@ -22,7 +22,7 @@ function CourseCard({ courseName, courseImg, className,coursePrice,courseDesc}:C
           {courseDesc}
         </p>
         <button className="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded-lg w-full transition duration-200">
-          Enroll Now
+          View Details
         </button>
       </div>
     </div>
